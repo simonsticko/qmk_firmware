@@ -1,7 +1,7 @@
 #include "ergodox_ez.h"
 #include "debug.h"
 #include "action_layer.h"
-#include "keymap_extras/keymap_norwegian.c"
+#include "keymap_swedish.h"
 
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
@@ -45,8 +45,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                KC_SPC,KC_BSPC,LT(SYMB,KC_GRV),
         // right hand
              KC_RGHT,     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             NO_PLUS,
-             TG(SYMB),    KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,             NO_AA,
-                          KC_H,   KC_J,   KC_K,   KC_L,   NO_OSLH,          NO_AE,
+             TG(SYMB),    KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,             SE_AA,
+                          KC_H,   KC_J,   KC_K,   KC_L,   SE_OSLH,          SE_AE,
              MEH_T(KC_NO),KC_N,   KC_M,   KC_COMM,KC_DOT, CTL_T(NO_MINS),   KC_RSFT,
                                   KC_RALT,KC_LEFT,KC_UP,  KC_RIGHT,         KC_DOWN,
              KC_PGUP, ALT_T(KC_APP),
@@ -58,9 +58,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |  F1  |  F2  |  F3  |  F4  |  F5  |      |           |      |  F6  |  F7  |  F8  |  F9  |  F10 |   F11  |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |   !  |   @  |   {  |   }  |   |  |      |           |      |   Up |   7  |   8  |   9  |   *  |   F12  |
+ * |        |   !  |   @  |   {  |   }  |   |  |      |           |      |   Up |   7  |   8  |   9  |   ^  |   F12  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |   #  |   $  |   (  |   )  |   `  |------|           |------| Down |   4  |   5  |   6  |   +  |        |
+ * |        |   #  |   $  |   (  |   )  |   `  |------|           |------| Down |   4  |   5  |   6  |   *  |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |        |   %  |   ^  |   [  |   ]  |   ~  |      |           |      |   &  |   1  |   2  |   3  |   \  |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -87,9 +87,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                KC_TRNS,KC_TRNS,KC_TRNS,
        // right hand
        KC_TRNS, KC_F6,   KC_F7,  KC_F8,   KC_F9,   KC_F10,  KC_F11,
-       KC_TRNS, KC_UP,   KC_7,   KC_8,    KC_9,    KC_ASTR, KC_F12,
-                KC_DOWN, KC_4,   KC_5,    KC_6,    KC_PLUS, KC_TRNS,
-       KC_TRNS, KC_AMPR, KC_1,   KC_2,    KC_3,    KC_BSLS, KC_TRNS,
+       KC_TRNS, KC_UP,   KC_7,   KC_8,    KC_9,    NO_CIRC, KC_F12,
+                KC_DOWN, KC_4,   KC_5,    KC_6,    SE_ASTR, KC_TRNS,
+       KC_TRNS, KC_AMPR, KC_1,   KC_2,    KC_3,    NO_BSLS , KC_TRNS,
                          KC_TRNS,KC_DOT,  KC_0,    KC_EQL,  KC_TRNS,
        KC_TRNS, KC_TRNS,
        KC_TRNS,
