@@ -25,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        | LGui | Home |       | PgUp |  App   |
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |      |      | End  |       | PgDn |        |      |
- *                                 |Space |BSpace|------|       |------|  Del   |Enter |
+ *                                 |Space | Del  |------|       |------| BSpace |Enter |
  *                                 |      |      | Alt  |       | Alt  |        |      |
  *                                 `--------------------'       `----------------------'
  */
