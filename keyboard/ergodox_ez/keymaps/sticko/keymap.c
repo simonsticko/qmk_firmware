@@ -26,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |      |      | End  |       | PgDn |        |      |
  *                                 |Space | Del  |------|       |------| BSpace |Enter |
- *                                 |      |      | Alt  |       | Alt  |        |      |
+ *                                 |      |      | Symb |       | Symb |        |      |
  *                                 `--------------------'       `----------------------'
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_PGUP,        KC_HOME,      KC_PGDN,KC_END, KC_LALT,
 		                                                      KC_LGUI,KC_HOME,
                                                                       KC_END,
-                                                      KC_SPC, KC_DEL, LT(SYMB,KC_GRV),
+                                                      KC_SPC, KC_DEL, MO(SYMB),
         // right hand
              KC_RGHT,     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             NO_PLUS,
              TG(SYMB),    KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,             SE_AA,
@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                   KC_RALT,KC_LEFT,KC_DOWN,KC_RIGHT,         KC_UP,
              KC_PGUP, ALT_T(KC_APP),
              KC_PGDN,
-			 LT(SYMB,KC_GRV),KC_BSPC, KC_ENT
+			 MO(SYMB),KC_BSPC, KC_ENT
     ),
 /* Keymap 1: Symbol Layer
  *
