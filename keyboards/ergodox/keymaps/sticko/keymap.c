@@ -56,15 +56,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 1: Symbol Layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |        |  F1  |  F2  |  F3  |  F4  |  F5  |      |           |      |  F6  |  F7  |  F8  |  F9  |  F10 |   F11  |
+ * |        |      |   @  |   £  |  $   |   €  |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |   !  |   @  |   {  |   }  |   |  |      |           |      |   Up |   7  |   [  |   ]  |   ^  |   ~    |
+ * |        |      |      |      |      |   ~  |      |           |      |      |      |   [  |   ]  |   ^  |   ~    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |   #  |   $  |   (  |   )  |   `  |------|           |------| Down |   4  |   {  |   }  |   *  |   '    |
+ * |        |   ´  |  $   |      |      |   `  |------|           |------|      |      |   {  |   }  |   *  |   '    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |   |  |   ^  |   [  |   ]  |      |      |           |      |   &  |   1  |   <  |   >  |   \  |        |
+ * |        |   |  |      |  ^   |      |      |      |           |      |      |      |   <  |   >  |   \  |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |      |      |      |      |      |                                       |      |    . |   0  |   =  |      |
+ *   |      |      |      |      |      |                                       |      |      |      |      |      |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        |      |      |       |      |      |
@@ -77,20 +77,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // SYMBOLS
 [SYMB] = KEYMAP(
        // left hand
-       KC_TRNS,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_TRNS,
-       KC_TRNS,KC_EXLM,KC_AT,  KC_LCBR,KC_RCBR,KC_PIPE,KC_TRNS,
-       KC_TRNS,KC_HASH,KC_DLR, KC_LPRN,KC_RPRN,KC_GRV,
-       KC_TRNS,NO_PIPE,KC_CIRC,KC_LBRC,KC_RBRC,KC_TILD,KC_TRNS,
+       KC_TRNS,KC_TRNS,NO_AT,  NO_PND, NO_DLR, SE_EU,  KC_TRNS,
+       KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,NO_TILD,KC_TRNS,
+       KC_TRNS,NO_ACUT,NO_DLR, KC_TRNS,KC_TRNS,NO_GRV,
+       KC_TRNS,NO_PIPE,KC_TRNS,NO_CIRC,KC_TRNS,KC_TRNS,KC_TRNS,
        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
                                        KC_TRNS,KC_TRNS,
                                                KC_TRNS,
                                KC_TRNS,KC_TRNS,KC_TRNS,
        // right hand
-       KC_TRNS, KC_F6,   KC_F7,  KC_F8,   KC_F9,   KC_F10,  KC_F11,
-       KC_TRNS, KC_UP,   KC_7,   NO_LBRC, NO_RBRC, NO_CIRC, NO_TILD,
-                KC_DOWN, KC_4,   NO_LCBR, NO_RCBR, SE_ASTR, NO_APOS,
-       KC_TRNS, KC_AMPR, KC_1,   NO_LESS, NO_GRTR, NO_BSLS, KC_TRNS,
-                         KC_TRNS,KC_DOT,  KC_0,    KC_EQL,  KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, NO_LBRC, NO_RBRC, NO_CIRC, NO_TILD,
+                KC_TRNS, KC_TRNS, NO_LCBR, NO_RCBR, SE_ASTR, NO_APOS,
+       KC_TRNS, KC_TRNS, KC_TRNS, NO_LESS, NO_GRTR, NO_BSLS, KC_TRNS,
+                         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
        KC_TRNS, KC_TRNS,
        KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS

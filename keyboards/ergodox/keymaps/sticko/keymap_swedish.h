@@ -13,9 +13,12 @@
 
 // There are slight differrences in the keyboards in the nordic contries
 #define SE_ACUT	ALGR(NO_BSLS)  // ´
-#define SE_AE	KC_QUOT  // æ
-#define SE_OSLH	KC_SCLN  // ø
+#define SE_GRV	LSFT(SE_ACUT)  // `
+#define SE_AE	KC_QUOT  // å
+#define SE_OSLH	KC_SCLN  // ö
 #define SE_PIPE KC_GRV  // |
+#define SE_EU   ALGR(KC_5) // €
+
 
 // Additional norwegian keys not defined in the nordic keyset
 #define SE_AA	KC_LBRC  // å
