@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 1: Symbol Layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |        |      |   @  |   £  |  $   |   €  |      |           |      |      |      |      |      |      |        |
+ * |        |      |   @  |   £  |  $   |   €  |      |           |      |      |      |   (  |   )  |      |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |        |      |      |      |      |   ~  |      |           |      |      |      |   [  |   ]  |   ^  |   ~    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                KC_TRNS,
                                KC_TRNS,KC_TRNS,KC_TRNS,
        // right hand
-       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS, NO_LPRN, NO_RPRN, KC_TRNS, KC_TRNS,
        KC_TRNS, KC_TRNS, KC_TRNS, NO_LBRC, NO_RBRC, NO_CIRC, NO_TILD,
                 KC_TRNS, KC_TRNS, NO_LCBR, NO_RCBR, SE_ASTR, NO_APOS,
        KC_TRNS, KC_TRNS, KC_TRNS, NO_LESS, NO_GRTR, NO_BSLS, KC_TRNS,
