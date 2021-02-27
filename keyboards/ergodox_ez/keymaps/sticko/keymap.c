@@ -3,10 +3,12 @@
 #include "action_layer.h"
 #include "keymap_swedish.h"
 
-#define BASE 0 // default layer
-#define SYMB 1 // symbols
-#define MDIA 2 // media keys
-#define MOUSE 3 // media keys
+enum Layers {
+    BASE,   // default layer
+    SYMB,   // symbols
+    MDIA,   // media keys
+    MOUSE,  // mouse layer
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
