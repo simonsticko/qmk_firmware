@@ -8,11 +8,18 @@ enum Layers {
     SYMB,   // symbols
     MDIA,   // media keys
     MOUSE,  // mouse layer
+    XOURNAL,  // shortcuts for xournal
 };
 
 enum CustomKeycodes {
   VRSN = SAFE_RANGE,
-  RGB_SLD
+  // Shortcuts in xournal
+  XOUR_ERASE, // Eraser
+  XOUR_PEN, // Pen
+  XOUR_SEL_OBJ, // Select object
+  XOUR_SEL_REC, // Select rectangle
+  XOUR_VSPACE, // Vertical space
+  XOUR_TXT, // Add text
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -44,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
         KC_ESC,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   MO(MDIA),
-        KC_TAB,         KC_Q,         KC_W,   KC_E,   KC_R,   KC_T,   TG(MOUSE),
+        KC_TAB,         KC_Q,         KC_W,   KC_E,   KC_R,   KC_T,   TG(XOURNAL),
         KC_CAPS,        KC_A,         KC_S,   KC_D,   KC_F,   KC_G,
         KC_LSFT,        CTL_T(KC_Z),  KC_X,   KC_C,   KC_V,   KC_B,   MO(MDIA),
         KC_PGUP,        KC_HOME,      KC_PGDN,KC_END, KC_LALT,
@@ -53,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                       KC_SPC, KC_DEL, MO(SYMB),
         // right hand
              MO(MDIA),    KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             NO_PLUS,
-             TG(SYMB),    KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,             SE_AA,
+             TG(MOUSE),   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,             SE_AA,
                           KC_H,   KC_J,   KC_K,   KC_L,   SE_OSLH,          SE_AE,
              MO(MDIA),    KC_N,   KC_M,   KC_COMM,KC_DOT, CTL_T(NO_MINS),   KC_LSFT,
                                   KC_LALT,KC_LEFT,KC_DOWN,KC_RIGHT,         KC_UP,
@@ -186,17 +193,78 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS,
        KC_TRNS, KC_TRNS, KC_BTN2
 ),
+/* XOURNAL Layer
+ *
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |------|           |------|      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |      |      |      |      |      |                                       |      |      |      |      |      |
+ *   `----------------------------------'                                       `----------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        |      |      |       |      |      |
+ *                                 ,------|------|------|       |------+------+------.
+ *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      |------|       |------|      |      |
+ *                                 |      |      |      |       |      |      |      |
+ *                                 `--------------------'       `--------------------'
+ */
+[XOURNAL] = LAYOUT_ergodox(
+       KC_TRNS, KC_TRNS,    KC_TRNS,      KC_TRNS,     KC_TRNS,  KC_TRNS,      KC_TRNS,
+       KC_TRNS, KC_TRNS,    KC_TRNS,      KC_TRNS,     KC_TRNS,  XOUR_TXT,     KC_TRNS,
+       KC_TRNS, XOUR_ERASE, XOUR_SEL_OBJ, XOUR_VSPACE, XOUR_PEN, XOUR_SEL_REC,
+       KC_TRNS, KC_TRNS,    KC_TRNS,      KC_TRNS,     KC_TRNS,  KC_TRNS,      KC_TRNS,
+       KC_TRNS, KC_TRNS,    KC_TRNS,      KC_TRNS,     KC_TRNS,
+                                                                 KC_TRNS,      KC_TRNS,
+                                                                               KC_TRNS,
+                                                       KC_TRNS,  KC_TRNS,      KC_TRNS,
+    // right hand
+       KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+       KC_TRNS, KC_TRNS,
+       KC_TRNS,
+       KC_TRNS, KC_TRNS, KC_TRNS
+),
 };
 
+// A macro for sending ctrl+shift+character
+#define SEND_CTRL_SHIFT(character) SEND_STRING(SS_DOWN(X_LCTL) SS_LSFT(character) SS_UP(X_LCTL))
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
-    switch (keycode) {
-      case VRSN:
-        SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-        return false;
+    if (record->event.pressed) {
+        switch (keycode) {
+            case VRSN:
+                SEND_STRING(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
+                return false;
+            case XOUR_ERASE:
+                SEND_CTRL_SHIFT("e");
+                return false;
+            case XOUR_PEN:
+                SEND_CTRL_SHIFT("p");
+                return false;
+            case XOUR_SEL_REC:
+                SEND_CTRL_SHIFT("r");
+                return false;
+            case XOUR_SEL_OBJ:
+                SEND_CTRL_SHIFT("o");
+                return false;
+            case XOUR_TXT:
+                SEND_CTRL_SHIFT("t");
+                return false;
+            case XOUR_VSPACE:
+                SEND_CTRL_SHIFT("v");
+                return false;
+        }
     }
-  }
-  return true;
+    return true;
 }
 
 // Runs just one time when the keyboard initializes.
@@ -223,6 +291,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
           break;
       case MOUSE:
           ergodox_right_led_3_on();
+          break;
+      case XOURNAL:
+          ergodox_right_led_1_on();
+          ergodox_right_led_2_on();
           break;
       default:
           // none
