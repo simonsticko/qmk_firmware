@@ -1,6 +1,6 @@
 #include QMK_KEYBOARD_H
-#include "debug.h"
-#include "action_layer.h"
+#include "version.h"
+
 #include "keymap_swedish.h"
 
 enum Layers {
@@ -8,6 +8,11 @@ enum Layers {
     SYMB,   // symbols
     MDIA,   // media keys
     MOUSE,  // mouse layer
+};
+
+enum CustomKeycodes {
+  VRSN = SAFE_RANGE,
+  RGB_SLD
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -183,53 +188,46 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 };
 
-const uint16_t PROGMEM fn_actions[] = {
-    [1] = ACTION_LAYER_TAP_TOGGLE(SYMB)                // FN1 - Momentary Layer 1 (Symbols)
-};
-
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
-{
-  // MACRODOWN only works in this function
-      switch(id) {
-        case 0:
-        if (record->event.pressed) {
-          register_code(KC_RSFT);
-        } else {
-          unregister_code(KC_RSFT);
-        }
-        break;
-      }
-    return MACRO_NONE;
-};
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (record->event.pressed) {
+    switch (keycode) {
+      case VRSN:
+        SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
+        return false;
+    }
+  }
+  return true;
+}
 
 // Runs just one time when the keyboard initializes.
-void matrix_init_user(void) {
-
+void keyboard_post_init_user(void) {
+#ifdef RGBLIGHT_COLOR_LAYER_0
+  rgblight_setrgb(RGBLIGHT_COLOR_LAYER_0);
+#endif
 };
 
-// Runs constantly in the background, in a loop.
-void matrix_scan_user(void) {
+// Runs whenever there is a layer state change.
+layer_state_t layer_state_set_user(layer_state_t state) {
+  ergodox_board_led_off();
+  ergodox_right_led_1_off();
+  ergodox_right_led_2_off();
+  ergodox_right_led_3_off();
 
-    uint8_t layer = biton32(layer_state);
+  uint8_t layer = get_highest_layer(state);
+  switch (layer) {
+      case SYMB:
+          ergodox_right_led_1_on();
+          break;
+      case MDIA:
+          ergodox_right_led_2_on();
+          break;
+      case MOUSE:
+          ergodox_right_led_3_on();
+          break;
+      default:
+          // none
+          break;
+  }
 
-    ergodox_board_led_off();
-    ergodox_right_led_1_off();
-    ergodox_right_led_2_off();
-    ergodox_right_led_3_off();
-    switch (layer) {
-      // TODO: Make this relevant to the ErgoDox EZ.
-        case SYMB:
-            ergodox_right_led_1_on();
-            break;
-        case MDIA:
-            ergodox_right_led_2_on();
-            break;
-        case MOUSE:
-            ergodox_right_led_3_on();
-            break;
-        default:
-            // none
-            break;
-    }
-
+  return state;
 };
