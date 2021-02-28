@@ -215,14 +215,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'       `--------------------'
  */
 [XOURNAL] = LAYOUT_ergodox(
-       KC_TRNS, KC_TRNS,    KC_TRNS,      KC_TRNS,     KC_TRNS,  KC_TRNS,      KC_TRNS,
-       KC_TRNS, KC_TRNS,    KC_TRNS,      KC_TRNS,     KC_TRNS,  XOUR_TXT,     KC_TRNS,
-       KC_TRNS, XOUR_ERASE, XOUR_SEL_OBJ, XOUR_VSPACE, XOUR_PEN, XOUR_SEL_REC,
-       KC_TRNS, KC_TRNS,    KC_TRNS,      KC_TRNS,     KC_TRNS,  KC_TRNS,      KC_TRNS,
+       KC_TRNS, KC_TRNS,    KC_TRNS,      KC_TRNS,     KC_TRNS,      KC_TRNS,      KC_TRNS,
+       KC_TRNS, KC_TRNS,    KC_TRNS,      XOUR_ERASE,  XOUR_SEL_REC, XOUR_TXT,     KC_TRNS,
+       KC_TRNS, KC_TRNS,    XOUR_SEL_OBJ, KC_TRNS,     XOUR_PEN,     KC_TRNS,
+       KC_TRNS, KC_TRNS,    KC_TRNS,      KC_TRNS,     XOUR_VSPACE,  KC_TRNS,      KC_TRNS,
        KC_TRNS, KC_TRNS,    KC_TRNS,      KC_TRNS,     KC_TRNS,
-                                                                 KC_TRNS,      KC_TRNS,
-                                                                               KC_TRNS,
-                                                       KC_TRNS,  KC_TRNS,      KC_TRNS,
+                                                                     KC_TRNS,      KC_TRNS,
+                                                                                   KC_TRNS,
+                                                       KC_TRNS,      KC_TRNS,      KC_TRNS,
     // right hand
        KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
        KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
