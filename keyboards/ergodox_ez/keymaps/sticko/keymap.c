@@ -20,6 +20,7 @@ enum CustomKeycodes {
   XOUR_SEL_REC, // Select rectangle
   XOUR_VSPACE, // Vertical space
   XOUR_TXT, // Add text
+  XOUR_UNDO, // Undo
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -218,7 +219,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS, KC_TRNS,    KC_TRNS,      KC_TRNS,     KC_TRNS,      KC_TRNS,      KC_TRNS,
        KC_TRNS, KC_TRNS,    KC_TRNS,      XOUR_ERASE,  XOUR_SEL_REC, XOUR_TXT,     KC_TRNS,
        KC_TRNS, KC_TRNS,    XOUR_SEL_OBJ, KC_TRNS,     XOUR_PEN,     KC_TRNS,
-       KC_TRNS, KC_TRNS,    KC_TRNS,      KC_TRNS,     XOUR_VSPACE,  KC_TRNS,      KC_TRNS,
+       KC_TRNS, XOUR_UNDO,  KC_TRNS,      KC_TRNS,     XOUR_VSPACE,  KC_TRNS,      KC_TRNS,
        KC_TRNS, KC_TRNS,    KC_TRNS,      KC_TRNS,     KC_TRNS,
                                                                      KC_TRNS,      KC_TRNS,
                                                                                    KC_TRNS,
@@ -261,6 +262,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             case XOUR_VSPACE:
                 SEND_CTRL_SHIFT("v");
+                return false;
+            case XOUR_UNDO:
+                SEND_STRING(SS_LCTL("z"));
                 return false;
         }
     }
