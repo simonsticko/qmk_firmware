@@ -21,6 +21,12 @@ enum CustomKeycodes {
   XOUR_VSPACE, // Vertical space
   XOUR_TXT, // Add text
   XOUR_UNDO, // Undo
+  XOUR_SHAPE, // Shape_recognizer
+  DRW_RECT, // Draw rectangle
+  DRW_CIRC, // Draw circle
+  DRW_ARR, // Draw arrow
+  DRW_COR, // Draw coordiante system
+  DRW_LIN, // Draw line
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -216,7 +222,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'       `--------------------'
  */
 [XOURNAL] = LAYOUT_ergodox(
-       KC_TRNS, KC_TRNS,    KC_TRNS,      KC_TRNS,     KC_TRNS,      KC_TRNS,      KC_TRNS,
+       KC_TRNS, XOUR_SHAPE, DRW_RECT,     DRW_CIRC,    DRW_ARR,      DRW_COR,      DRW_LIN,
        KC_TRNS, KC_TRNS,    KC_TRNS,      XOUR_ERASE,  XOUR_SEL_REC, XOUR_TXT,     KC_TRNS,
        KC_TRNS, KC_TRNS,    XOUR_SEL_OBJ, KC_TRNS,     XOUR_PEN,     KC_TRNS,
        KC_TRNS, XOUR_UNDO,  KC_TRNS,      KC_TRNS,     XOUR_VSPACE,  KC_TRNS,      KC_TRNS,
@@ -265,6 +271,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             case XOUR_UNDO:
                 SEND_STRING(SS_LCTL("z"));
+                return false;
+            case XOUR_SHAPE:
+                SEND_STRING(SS_LCTL("1"));
+                return false;
+            case DRW_RECT:
+                SEND_STRING(SS_LCTL("2"));
+                return false;
+            case DRW_CIRC:
+                SEND_STRING(SS_LCTL("3"));
+                return false;
+            case DRW_ARR:
+                SEND_STRING(SS_LCTL("4"));
+                return false;
+            case DRW_COR:
+                SEND_STRING(SS_LCTL("5"));
+                return false;
+            case DRW_LIN:
+                SEND_STRING(SS_LCTL("6"));
                 return false;
         }
     }
